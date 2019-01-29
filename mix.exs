@@ -1,4 +1,4 @@
-defmodule Cid.MixProject do
+defmodule Base58Encode.MixProject do
   use Mix.Project
 
   def project do
