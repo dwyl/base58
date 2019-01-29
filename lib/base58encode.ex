@@ -32,6 +32,8 @@ defmodule Base58Encode do
  defp get_codes(int, codes) do
    rest = div(int, 58)
    code = rem(int, 58)
+   IO.inspect "rest #{rest}"
+   IO.inspect code
    if  rest == 0 do
      [code | codes]
    else
