@@ -16,6 +16,8 @@ defmodule Base58Encode do
 
  def encode(""), do: ""
 
+ def encode(<<0>>), do: "1"
+
  def encode(binary) when is_binary(binary) do
   # see https://github.com/dwyl/base58encode/pull/3#discussion_r252291127
   decimal = :binary.decode_unsigned(binary)
@@ -60,6 +62,6 @@ defmodule Base58Encode do
 
  defp leading_zeros(_bin, acc) do
    acc
-end
+ end
 
 end

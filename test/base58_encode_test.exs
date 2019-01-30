@@ -29,6 +29,10 @@ defmodule Base58EncodeTest do
       assert "Z" == Base58Encode.encode(" ")
     end
 
+    test "encode <<0>> retuens 1" do
+      assert "1" == Base58Encode.encode(<<0>>)
+    end
+
     property "Compare result with basefiftyeight package" do
       check all bin <- binary() do
         assert B58.encode58(bin) == Base58Encode.encode(bin)
