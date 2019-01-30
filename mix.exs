@@ -31,7 +31,7 @@ defmodule Base58Encode.MixProject do
 
   defp aliases do
     [
-      test: ["coveralls"],
+      test: ["coveralls"]
     ]
   end
 
