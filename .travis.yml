@@ -4,6 +4,6 @@ elixir:
 env:
   - MIX_ENV=test
 script:
-  - mix coveralls.travis
+  - mix cover
 after_success:
   - bash <(curl -s https://codecov.io/bash)

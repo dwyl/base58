@@ -12,7 +12,12 @@ defmodule Base58Encode.MixProject do
       deps: deps(),
       aliases: aliases(),
       test_coverage: [tool: ExCoveralls],
-      preferred_cli_env: [coveralls: :test],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test
+      ],
       source_url: "https://github.com/dwyl/base58encode"
     ]
   end
@@ -34,7 +39,8 @@ defmodule Base58Encode.MixProject do
 
   defp aliases do
     [
-      test: ["coveralls"]
+      test: ["coveralls"],
+      cover: ["coveralls.json"],
     ]
   end
 
