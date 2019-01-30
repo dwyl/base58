@@ -4,7 +4,7 @@ https://hex.pm/packages/b58
 
 This module provides the `Base58Encode.encode/1` function which takes an **Elixir binary** and returns its base58 String representation.
 
-See the section [What are binary in Elixir?](#What-are-binary-in-Elixir?) for more information about the binary type in Elixir.
+See the section [What is an Elixir binary?](#What-is-an-elixir-binary) for more information about the binary type in Elixir.
 
 ## How to use the module
 
@@ -62,7 +62,7 @@ Wikipedia page for base58:
 https://en.wikipedia.org/wiki/Base56
 
 
-## What are binary in Elixir?
+## What is an Elixiry binary?
 
 From https://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html
 > A `binary` is a sequence of bytes
@@ -77,14 +77,14 @@ For example the following are bytes with their decimal representation:
 | 00000011 | 3 |
 | 00000100 | 4 |
 
-In Elixir binary can be represented and created with `<< >>`
+In Elixir binary is represented and created with `<< >>`
 
-For example the bytes sequence `00000001 00000010 00000011 00000100`
-is `<<1, 2, 3, 4>>`
+For example the sequence of bytes `00000001 00000010 00000011 00000100`
+is `<<1, 2, 3, 4>>` in Elixir.
 
 All Elixir Strings are a binaries but not all binaries are String.
 a String is a binary where the numbers represent each letter in UTF8/unicode.
-One trick to see the bynary representation of a string is to add `<<0>>` at the end of the string with the concatenation operator `<>`:
+One trick to see the binary representation of a string is to add `<<0>>` at the end of the string with the concatenation operator `<>`:
 
 ```
 "hello" <> <<0>>
