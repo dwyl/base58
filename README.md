@@ -34,34 +34,108 @@ See the section [What is an Elixir binary?](#What-is-an-elixir-binary) for more 
  :error
  ```
 
- See `example/Example.exs` file for a simple example on how to use the module.
- You can also run this example with `mix run example/Example.exs`
+ See `example/example.exs` file for a simple example on how to use the module.
+ You can also run this example with `mix run example/example.exs`
 
 ## What is base58?
 
-`base58` provides a way to represent an **integer to a string** where the characters of the string are selected from the following list:  
+A *base* is a set of characters used for representing numbers.
+
+For example
+- The base 2 (binary system) represents numbers with the digits ` 0 1`
+- The base 10 (decimal system) represents numbers with the digits `0 1 2 3 4 5 6 7 8 9`.
+- The base 16 (hexadecimal system) represents numbers with the digits `0 1 2 3 4 5 6 7 8 9 A B C D E F`
+
+
+The `2, 10, 16` are called **radix** and represent the number of unique digits in the base.
+
+Bases are **positional numeral systems**. This means that the place of a digit matters,
+for example we can define the place for each digit of the number 423 as:
+
+| digit | place|
+| --    | -- |
+| 3  | 0  |
+| 2  | 1  |
+| 4  | 2  |
+
+
+### From a base b to decimal
+
+To calculate the value of a number in a specific base to base 10, we are using
+the place of the digit, the radix and the function exponential as following:
+
+**423** in base b is **4 x b<sup>2</sup> + 2 x b<sup>1</sup> + 3 x b<sup>0</sup>**
+
+So **423** in base 10 is **4 x 10<sup>2</sup> + 2 x 10<sup>1</sup> + 3 x 10<sup>0</sup>**
+
+another example on base 16 with the number **F66**:
+We know that F is 15 in base 10, then by using exponentials and places we have
+**F66** is **15 x 16<sup>2</sup> + 6 x 16<sup>1</sup> + 6 * 16<sup>0</sup>** which is
+**3942**
+
+### From decimal to base b
+
+To convert a decimal d to base b
+1. Get the remainder of d by b: `rem(d, b)` and note down the result.
+2. Get the integer division of d by b:`d1 = div(d, b)` and repeat the step 1 with `rem(d1, b)`
+3. Stop this process when the division returns 0
+4. Match each number of the sequence of remainder to the base
+
+For example 12 in base 2 is:
+
+```
+r0 = 0 = rem(12, 2)
+d0 = 6 = div(12, 2)
+
+
+r1 = 0 = rem(d0, 2) = rem(6,2)
+d1 = 3 = div(6, 2)
+
+
+r2 = 1 = rem(d1, 2) = rem(3, 2)
+d2 = 1 = div(3, 2)
+
+r3 = 1 = rem(d2, 2) = rem(1, 2)
+d3 = 0 = div(1, 2) # stop the process
+
+# 12 in base 2 is r3 r2 r1 r0 which is 1100
+```
+
+### Decimal to base58
+
+`base58` represents number with the follwing character set:
 
 `123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz`
 
-The idea is to map each character of the set to a value: 0 to 1, 2 to 2 ... 57 to z.
+If we take the process on the previous section with **65** and apply it with base58 we have:
 
-The integer is then converted to the base58 list of codes. For example 65
-is represented as a list of two codes 1 and 7:
 ```
-65 % 58 = 7 (65 modulo 58 is 7 (65 - 58 * 1 = 7))
-1 % 58 = 1
+r0 = 7 = rem(65, 58)
+d0 = 1 = div(65, 58)
 
-So 65 is represented by 1 7 codes
+r1 = 1 = rem(1, 58)
+d1 = 0 = div(1, 58) # stop the process
+
+# r1 r0 is 1 7 and with the base58 characters 1 is 2 and 7 is 8
+# So 65 in base 10 is 28 in base 58
 ```
-
-Then by matching these two codes to the base58 character set we have **28**
 
 For more information about the implementation of this module see the issue 1:
 [How to encode a string to base58](https://github.com/dwyl/base58encode/issues/1)
 
+Wikipedia page for Base:
+https://en.wikipedia.org/wiki/Radix
+
+## Why Base58?
+
+The base 58 character set is a subset of the base 64 where non-alphanumeric characters
+have been removed and also `0OIl` letters to keep the string easily readable.
+
+base 58 uses comes from Bitcoin and blockchain. It is also used with [IPFS](https://ipfs.io/)
+to create [Content Identifier](https://github.com/dwyl/cid/)
+
 Wikipedia page for base58:
 https://en.wikipedia.org/wiki/Base56
-
 
 ## What is an Elixiry binary?
 
@@ -83,8 +157,8 @@ In Elixir binary is represented and created with `<< >>`
 For example the sequence of bytes `00000001 00000010 00000011 00000100`
 is `<<1, 2, 3, 4>>` in Elixir.
 
-All Elixir Strings are a binaries but not all binaries are String.
-a String is a binary where the numbers represent each letter in UTF8/unicode.
+All Elixir Strings are a binaries but not all binaries are Strings.
+A String is a binary where the numbers represent each letter in UTF8/unicode.
 One trick to see the binary representation of a string is to add `<<0>>` at the end of the string with the concatenation operator `<>`:
 
 ```
@@ -101,6 +175,18 @@ However 6 in Elixir is not a binary but an Integer.
 You can use the `Integer.to_string` function to see the representation of an integer in different base:
 
 ```
-Integer.to_string(6, 2)
+Integer.to_string(6, 2) # 6 as binary number in base 2
 "110"
+
+Integer.to_string(10, 2) # 10 as binary number in base 2
+"1010"
+
+Integer.to_string(10, 10) # 10 as a decimal number in base 10
+"10"
+
+Integer.to_string(10, 16) # 10 as an hexadecimal number in base 16
+"A"
+
+Integer.to_string(15, 16) # 15 as an hexadecimal number in base 16
+"F"
 ```
