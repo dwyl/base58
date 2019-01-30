@@ -14,15 +14,15 @@ defmodule Base58Encode do
     :error
   """
 
- def encode(binary) when is_binary(binary) do
-   case Integer.parse(Base.encode16(binary), 16) do
-      :error -> :error
+ def encode(""), do: ""
 
-      {decimal, _} ->
-        codes = get_codes(decimal, [])
-        codes_to_string(codes)
-   end
+ def encode(binary) when is_binary(binary) do
+  # see https://github.com/dwyl/base58encode/pull/3#discussion_r252291127
+  decimal = :binary.decode_unsigned(binary)
+  codes = get_codes(decimal, [])
+  codes_to_string(codes)
  end
+
 
  # If the parameter is not a binary, return an error
  def encode(_), do: :error

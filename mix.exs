@@ -26,7 +26,10 @@ defmodule Base58Encode.MixProject do
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
-    [{:excoveralls, "~> 0.10", only: :test}]
+    [ {:excoveralls, "~> 0.10", only: :test},
+      {:basefiftyeight, "~> 0.1.0", only: :test},
+      {:stream_data, "~> 0.1", only: :test}
+    ]
   end
 
   defp aliases do

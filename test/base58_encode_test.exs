@@ -1,5 +1,7 @@
 defmodule Base58EncodeTest do
   use ExUnit.Case
+  use ExUnitProperties
+
   doctest Base58Encode
 
   describe "Testing encode function" do
@@ -13,6 +15,12 @@ defmodule Base58EncodeTest do
 
     test "returns z when binary is represented by 57" do
       assert "z" == Base58Encode.encode(<<57>>)
+    end
+
+    property "Compare result with basefiftyeight package" do
+      check all bin <- binary() do
+        assert B58.encode58(bin) == Base58Encode.encode(bin)
+      end
     end
   end
 end
