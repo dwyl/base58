@@ -107,6 +107,9 @@ d3 = 0 = div(1, 2) # stop the process
 
 `123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz`
 
+where
+` 0 -> "1", 1 -> "2", ..., 57 -> "z"`
+
 If we take the process on the previous section with **65** and apply it with base58 we have:
 
 ```
