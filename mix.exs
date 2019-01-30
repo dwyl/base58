@@ -10,13 +10,10 @@ defmodule Base58Encode.MixProject do
       elixir: "~> 1.7",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      aliases: aliases(),
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
         coveralls: :test,
-        "coveralls.detail": :test,
-        "coveralls.post": :test,
-        "coveralls.html": :test
+        "coveralls.json": :test
       ],
       source_url: "https://github.com/dwyl/base58encode"
     ]
@@ -34,13 +31,6 @@ defmodule Base58Encode.MixProject do
     [ {:excoveralls, "~> 0.10", only: :test},
       {:basefiftyeight, "~> 0.1.0", only: :test},
       {:stream_data, "~> 0.1", only: :test}
-    ]
-  end
-
-  defp aliases do
-    [
-      test: ["coveralls"],
-      cover: ["coveralls.json"],
     ]
   end
 
