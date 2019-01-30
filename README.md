@@ -1,7 +1,7 @@
 # elixir-base58-encode
 [![Hex pm](http://img.shields.io/hexpm/v/b58.svg?style=flat)](https://hex.pm/packages/b58)
 [![Build Status](https://travis-ci.org/dwyl/base58encode.svg?branch=master)](https://travis-ci.org/dwyl/base58encode)
-[![Coverage Status](https://coveralls.io/repos/dwyl/base58Encode/badge.svg?branch=master)](https://coveralls.io/r/dwyl/base58Encode?branch=master)
+[![codecov](https://codecov.io/gh/dwyl/base58encode/branch/master/graph/badge.svg)](https://codecov.io/gh/dwyl/base58encode)
 
 This module provides the `Base58Encode.encode/1` function which takes an **Elixir binary** and returns its base58 String representation.
 
