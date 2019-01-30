@@ -17,6 +17,18 @@ defmodule Base58EncodeTest do
       assert "z" == Base58Encode.encode(<<57>>)
     end
 
+    test "returns empty string when encoding an empty string" do
+      assert "" == Base58Encode.encode("")
+    end
+
+    test "add leading zeros as \"1\"" do
+      assert "1112" == Base58Encode.encode(<<0, 0, 0, 1>>)
+    end
+
+    test "encode empty string" do
+      assert "Z" == Base58Encode.encode(" ")
+    end
+
     property "Compare result with basefiftyeight package" do
       check all bin <- binary() do
         assert B58.encode58(bin) == Base58Encode.encode(bin)

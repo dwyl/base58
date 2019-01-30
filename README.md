@@ -123,6 +123,14 @@ d1 = 0 = div(1, 58) # stop the process
 # So 65 in base 10 is 28 in base 58
 ```
 
+Note that if a binary start with [leading zeros](https://en.wikipedia.org/wiki/Leading_zero) then
+the zeros are represented as "1" in base58.
+So <<0, 0, 0, 1>> is defined as "1112" in base58.
+
+from https://en.bitcoin.it/wiki/Base58Check_encoding
+
+> The leading character '1', which has a value of zero in base58, is reserved for representing an entire leading zero byte
+
 For more information about the implementation of this module see the issue 1:
 [How to encode a string to base58](https://github.com/dwyl/base58encode/issues/1)
 

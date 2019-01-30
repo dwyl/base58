@@ -20,7 +20,7 @@ defmodule Base58Encode do
   # see https://github.com/dwyl/base58encode/pull/3#discussion_r252291127
   decimal = :binary.decode_unsigned(binary)
   codes = get_codes(decimal, [])
-  codes_to_string(codes)
+  leading_zeros(binary, "") <> codes_to_string(codes)
  end
 
 
@@ -52,5 +52,14 @@ defmodule Base58Encode do
   |> Enum.map(&(Enum.at(alphabet, &1)))
   |> Enum.join()
  end
+
+ # convert leading zeros to "1"
+ defp leading_zeros(<<0, rest::binary>>, acc) do
+   leading_zeros(rest, acc <> "1")
+ end
+
+ defp leading_zeros(_bin, acc) do
+   acc
+end
 
 end
