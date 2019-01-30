@@ -16,13 +16,16 @@ defmodule Base58Encode do
 
  def encode(""), do: ""
 
- def encode(<<0>>), do: "1"
-
  def encode(binary) when is_binary(binary) do
   # see https://github.com/dwyl/base58encode/pull/3#discussion_r252291127
   decimal = :binary.decode_unsigned(binary)
-  codes = get_codes(decimal, [])
-  leading_zeros(binary, "") <> codes_to_string(codes)
+  if decimal == 0 do
+    # see https://github.com/dwyl/base58encode/issues/5#issuecomment-459088540
+    leading_zeros(binary, "")
+  else
+    codes = get_codes(decimal, [])
+    leading_zeros(binary, "") <> codes_to_string(codes)
+  end
  end
 
 
