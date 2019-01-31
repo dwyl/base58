@@ -6,6 +6,7 @@ defmodule Base58Encode.MixProject do
       app: :base58encode,
       name: "b58",
       description: description(),
+      package: package(),
       version: "0.1.0",
       elixir: "~> 1.7",
       start_permanent: Mix.env() == :prod,
@@ -36,5 +37,14 @@ defmodule Base58Encode.MixProject do
 
   defp description() do
     "Encode an Elixir binary to its base58 representation"
+  end
+
+  defp package() do
+    [
+      name: "b58",
+      licenses: ["GNU GPL v2.0"],
+      maintainers: ["dwyl"],
+      links: %{"GitHub" => "https://github.com/dwyl/base58encode"}
+    ]
   end
 end

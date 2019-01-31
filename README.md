@@ -5,7 +5,7 @@
 
 This module provides the `Base58Encode.encode/1` function which takes an **Elixir binary** and returns its base58 String representation.
 
-See the section [What is an Elixir binary?](#What-is-an-elixir-binary) for more information about the binary type in Elixir.
+See the section [What is an Elixir binary?](#what-is-an-elixir-binary) for more information about the binary type in Elixir.
 
 ## How to use the module
 
@@ -148,7 +148,7 @@ to create [Content Identifier](https://github.com/dwyl/cid/)
 Wikipedia page for base58:
 https://en.wikipedia.org/wiki/Base56
 
-## What is an Elixiry binary?
+## What is an Elixir binary?
 
 From https://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html
 > A `binary` is a sequence of bytes
