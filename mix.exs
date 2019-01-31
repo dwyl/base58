@@ -31,7 +31,8 @@ defmodule Base58Encode.MixProject do
   defp deps do
     [ {:excoveralls, "~> 0.10", only: :test},
       {:basefiftyeight, "~> 0.1.0", only: :test},
-      {:stream_data, "~> 0.1", only: :test}
+      {:stream_data, "~> 0.1", only: :test},
+      {:ex_doc, "~> 0.19.3", only: :dev}
     ]
   end
 
