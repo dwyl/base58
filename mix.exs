@@ -3,7 +3,7 @@ defmodule Base58Encode.MixProject do
 
   def project do
     [
-      app: :base58encode,
+      app: :b58,
       name: "b58",
       description: description(),
       package: package(),
