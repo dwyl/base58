@@ -1,19 +1,19 @@
 <div align="center">
 
-# Elixir Base58
+# `b58` a Minimalist Elixir Base58 Encoding/Decoding Library
 
-[![Build Status](https://img.shields.io/travis/dwyl/exbase58/master.svg?style=flat-square)](https://travis-ci.org/dwyl/exbase58)
-[![codecov.io](https://img.shields.io/codecov/c/github/dwyl/exbase58/master.svg?style=flat-square)](http://codecov.io/github/dwyl/exbase58?branch=master)
-[![Hex.pm](https://img.shields.io/hexpm/v/exbase58?color=brightgreen&style=flat-square)](https://hex.pm/packages/exbase58)
-[![Libraries.io dependency status](https://img.shields.io/librariesio/release/hex/exbase58?logoColor=brightgreen&style=flat-square)](https://libraries.io/hex/exbase58)
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/dwyl/exbase58/issues)
+[![Build Status](https://img.shields.io/travis/dwyl/base58/master.svg?style=flat-square)](https://travis-ci.org/dwyl/base58)
+[![codecov.io](https://img.shields.io/codecov/c/github/dwyl/base58/master.svg?style=flat-square)](http://codecov.io/github/dwyl/base58?branch=master)
+[![Hex.pm](https://img.shields.io/hexpm/v/base58?color=brightgreen&style=flat-square)](https://hex.pm/packages/base58)
+[![Libraries.io dependency status](https://img.shields.io/librariesio/release/hex/base58?logoColor=brightgreen&style=flat-square)](https://libraries.io/hex/base58)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/dwyl/base58/issues)
 <!--
-[![HitCount](http://hits.dwyl.io/dwyl/exbase58.svg)](http://hits.dwyl.io/dwyl/exbase58)
+[![HitCount](http://hits.dwyl.io/dwyl/base58.svg)](http://hits.dwyl.io/dwyl/base58)
 <!-- uncomment when service is working ...
-[![Inline docs](http://inch-ci.org/github/dwyl/exbase58.svg?branch=master&style=flat-square)](http://inch-ci.org/github/dwyl/exbase58)
+[![Inline docs](http://inch-ci.org/github/dwyl/base58.svg?branch=master&style=flat-square)](http://inch-ci.org/github/dwyl/base58)
 -->
 
-`exbase58` provides two functions: `encode/1` and `decode/1`. <br />
+`b58` provides functions `encode/1` and `decode/1`  <br />
 `encode/1` takes an **Elixir binary** (_String, Number, etc._)
 and returns a Base58 encoded String. <br />
 `encode/1` receives a Base58 encoded String and returns a binary.
@@ -26,31 +26,33 @@ See the section [What is an Elixir binary?](#what-is-an-elixir-binary) for more 
 
   ```
   defp deps do
-    [exbase58: "~> 0.1.0"]
+    [b58: "~> 1.0.0"]
   end
   ```
 
-  and run `mix deps.get`
+and run `mix deps.get`
 
-2. Call the `encode` function with a binary as parameter:
+2. Invoke the `encode` function with a binary as parameter:
 
  ```
- Base58Encode.encode("foo")
+ B58.encode("foo")
  "bQbp"
  ```
 
- if the parameter is not an Elixir binary the function will return `:error`. In
- this example 42 is an Integer and not a binary (`is_binary(42)` will return `false`)
+3. Invoke the `decode` function with a `base58` encoded string:
 
- ```
- Base58Encode.encode(42)
- :error
- ```
+```
+B58.encode("hello") |> B58.decode()
+"hello"
+```
+
 
  See `example/example.exs` file for a simple example on how to use the module.
  You can also run this example with `mix run example/example.exs`
 
-## What is base58?
+<br /> <br />
+
+## What is Base58?
 
 A *base* is a set of characters used for representing numbers.
 

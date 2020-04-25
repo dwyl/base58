@@ -1,9 +1,9 @@
 defmodule Base58 do
   @moduledoc """
-  `exbase58` provides two functions: `encode/1` and `decode/1`.
+  `base58` provides two functions: `encode/1` and `decode/1`.
   `encode/1` takes an **Elixir binary** (_String, Number, etc._)
   and returns a Base58 encoded String.
-  `encode/1` receives a Base58 encoded String and returns a binary.
+  `decode/1` receives a Base58 encoded String and returns a binary.
   """
 
   @doc """
@@ -17,11 +17,11 @@ defmodule Base58 do
   """
   def encode(""), do: ""
   def encode(binary) when is_binary(binary) do
-    # see https://github.com/dwyl/base58encode/pull/3#discussion_r252291127
+    # see https://github.com/dwyl/base58/pull/3#discussion_r252291127
     decimal = :binary.decode_unsigned(binary)
 
     if decimal == 0 do
-      # see https://github.com/dwyl/base58encode/issues/5#issuecomment-459088540
+      # see https://github.com/dwyl/base58/issues/5#issuecomment-459088540
       leading_zeros(binary, "")
     else
       codes = get_codes(decimal, [])
