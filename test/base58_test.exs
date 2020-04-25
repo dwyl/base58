@@ -1,4 +1,4 @@
-defmodule ExBase58Test do
+defmodule Base58Test do
   use ExUnit.Case
   use ExUnitProperties
 
