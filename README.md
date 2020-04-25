@@ -1,6 +1,6 @@
 <div align="center">
 
-# `b58` a Minimalist Elixir Base58 Encoding/Decoding Library
+# `b58` - _Minimalist_ Elixir Base58 Encoding/Decoding Library
 
 [![Build Status](https://img.shields.io/travis/dwyl/base58/master.svg?style=flat-square)](https://travis-ci.org/dwyl/base58)
 [![codecov.io](https://img.shields.io/codecov/c/github/dwyl/base58/master.svg?style=flat-square)](http://codecov.io/github/dwyl/base58?branch=master)
@@ -12,6 +12,8 @@
 <!-- uncomment when service is working ...
 [![Inline docs](http://inch-ci.org/github/dwyl/base58.svg?branch=master&style=flat-square)](http://inch-ci.org/github/dwyl/base58)
 -->
+
+</div>
 
 `Base58` provides two functions to
 work with Base58 encoded strings: `Base58.encode/1` and `Base58.decode/1`  <br />
