@@ -7,7 +7,7 @@ defmodule Base58.MixProject do
       name: "exbase58",
       description: description(),
       package: package(),
-      version: "0.1.1",
+      version: "1.0.0",
       elixir: "~> 1.7",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -38,7 +38,7 @@ defmodule Base58.MixProject do
   end
 
   defp description() do
-    "Encode an Elixir binary to base58 and decode base58 strings."
+    "`B58` lets you `encode` an Elixir binary to base58 and `decode` a base58 string."
   end
 
   defp package() do
