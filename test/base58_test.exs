@@ -6,20 +6,22 @@ defmodule Base58Test do
   import Base58
 
   describe "Testing encode function" do
+    test "returns empty string when encoding an empty string" do
+      assert "" == encode("")
+    end
+
     test "returns base58 for the string foo" do
       assert "bQbp" == encode("foo")
     end
 
-    test "returns error if parameter is not a binary" do
-      assert :error == encode(23)
+    test "converts any value to binary and then Base58 encodes it" do
+      assert "m8UW" == encode(23) # Integer
+      assert "8NmHr9odQSJL4n" == encode(3.14)
+      assert "2g14LRptojh8i" == encode(:hello) # Atom
     end
 
     test "returns z when binary is represented by 57" do
       assert "z" == encode(<<57>>)
-    end
-
-    test "returns empty string when encoding an empty string" do
-      assert "" == encode("")
     end
 
     test "add leading zeros as \"1\"" do
@@ -41,9 +43,10 @@ defmodule Base58Test do
     property "Compare result with basefiftyeight package" do
       check all bin <- binary() do
         assert B58.encode58(bin) == encode(bin)
+
       end
     end
 
-    
+
   end
 end

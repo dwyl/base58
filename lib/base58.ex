@@ -13,7 +13,7 @@ defmodule Base58 do
     "Cn8eVZg"
 
     iex> Base58.encode(42)
-    :error
+    "m8Uq"
   """
 
  def encode(""), do: ""
@@ -31,8 +31,11 @@ defmodule Base58 do
  end
 
 
- # If the parameter is not a binary, return an error
- def encode(_), do: :error
+ # If the parameter is not a binary convert it to binary before encode.
+ def encode(anything) do
+   :erlang.term_to_binary(anything)
+   |> encode()
+ end
 
 
 # return a list of codes (codepoint of base58)
@@ -54,7 +57,6 @@ defmodule Base58 do
                 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g',
                 'h', 'i', 'j', 'k', 'm', 'n', 'o', 'p', 'q', 'r',
                 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' ]
-
   codes
   |> Enum.map(&(Enum.at(alphabet, &1)))
   |> Enum.join()
