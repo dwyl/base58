@@ -3,8 +3,8 @@ defmodule Base58.MixProject do
 
   def project do
     [
-      app: :exbase58,
-      name: "exbase58",
+      app: :B58,
+      name: "b58",
       description: description(),
       package: package(),
       version: "1.0.0",
@@ -16,7 +16,7 @@ defmodule Base58.MixProject do
         coveralls: :test,
         "coveralls.json": :test
       ],
-      source_url: "https://github.com/dwyl/exbase58"
+      source_url: "https://github.com/dwyl/base58"
     ]
   end
 
@@ -33,7 +33,7 @@ defmodule Base58.MixProject do
       {:excoveralls, "~> 0.12.3", only: :test},
       {:basefiftyeight, "~> 0.1.0", only: :test},
       {:stream_data, "~> 0.4.3", only: :test},
-      {:ex_doc, "~> 0.19.3", only: :dev}
+      {:ex_doc, "~> 0.21.3", only: :dev}
     ]
   end
 
