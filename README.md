@@ -30,37 +30,39 @@ See the section [What is an Elixir binary?](#what-is-an-elixir-binary) for more 
 
 1. Add the package to you dependencies
 
-  ```
-  defp deps do
-    [Base58: "~> 1.0.0"]
-  end
-  ```
+```elixir
+defp deps do
+  [Base58: "~> 1.0.0"]
+end
+```
 
 and run `mix deps.get`
 
 2. Invoke the `encode` function with a binary as parameter:
 
- ```
- Base58.encode("foo")
- "bQbp"
- ```
+```elixir
+Base58.encode("foo")
+"bQbp"
+```
 
 3. Invoke the `decode` function with a `base58` encoded string:
 
-```
+```elixir
 Base58.encode("hello") |> Base58.decode()
 "hello"
 ```
 
 
- See `example/example.exs` file for a simple example on how to use the module.
- You can also run this example with `mix run example/example.exs`
+See `example/example.exs` file
+for a simple example of how to use the module. <br />
+You can also run this example with `mix run example/example.exs`
 
 <br /> <br />
 
 ## What is Base58?
 
 A *base* is a set of characters used for representing numbers.
+https://en.wikipedia.org/wiki/Base58
 
 For example
 - The base 2 (binary system) represents numbers with the digits ` 0 1`
