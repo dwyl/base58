@@ -13,6 +13,9 @@
 [![Inline docs](http://inch-ci.org/github/dwyl/base58.svg?branch=master&style=flat-square)](http://inch-ci.org/github/dwyl/base58)
 -->
 
+![base58-encode-hero-image](https://user-images.githubusercontent.com/194400/80292242-1d2de500-874d-11ea-8514-91a8fdfabfde.jpg)
+
+
 </div>
 
 `Base58` provides two functions to
