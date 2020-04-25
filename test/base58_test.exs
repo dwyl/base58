@@ -2,8 +2,8 @@ defmodule ExBase58Test do
   use ExUnit.Case
   use ExUnitProperties
 
-  doctest ExBase58
-  import ExBase58
+  doctest Base58
+  import Base58
 
   describe "Testing encode function" do
     test "returns empty string when encoding an empty string" do
@@ -15,9 +15,11 @@ defmodule ExBase58Test do
     end
 
     test "converts any value to binary and then Base58 encodes it" do
-      assert "m8UW" == encode(23) # Integer
+      # Integer
+      assert "m8UW" == encode(23)
       assert "8NmHr9odQSJL4n" == encode(3.14)
-      assert "2g14LRptojh8i" == encode(:hello) # Atom
+      # Atom
+      assert "2g14LRptojh8i" == encode(:hello)
     end
 
     test "returns z when binary is represented by 57" do
@@ -40,13 +42,27 @@ defmodule ExBase58Test do
       assert "11111" == encode(<<0, 0, 0, 0, 0>>)
     end
 
-    property "Compare result with basefiftyeight package" do
-      check all bin <- binary() do
-        assert B58.encode58(bin) == encode(bin)
+    test "decode(encode(str) == str)" do
+      assert B58.encode58("123") == encode("123")
+      assert decode(encode("123")) == "123"
+    end
 
+    property "Compare result with Base58 package" do
+      check all(bin <- binary()) do
+        case bin == "" do
+          true -> # Base58.encode cannot handle an empty string
+            bin
+          false ->
+            assert Base58.encode(bin) == encode(bin)
+        end
       end
     end
 
-
+    property "Check a bunch of binary values can be encoded and decoded" do
+      check all(bin <- binary()) do
+        bin = String.replace(bin, "\0", "") # strip null
+        assert decode(encode(bin)) == bin
+      end
+    end
   end
 end
