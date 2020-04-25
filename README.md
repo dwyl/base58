@@ -32,7 +32,7 @@ See the section [What is an Elixir binary?](#what-is-an-elixir-binary) for more 
 
 ```elixir
 defp deps do
-  [Base58: "~> 1.0.0"]
+  [:b58, "~> 1.0.0"]
 end
 ```
 
