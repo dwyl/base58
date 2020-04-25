@@ -1,16 +1,18 @@
-defmodule Base58Encode do
+defmodule Base58 do
   @moduledoc """
-  Provides the encode function which takes a binary and return it's
-  reprentation in base58
+  `exbase58` provides two functions: `encode/1` and `decode/1`.
+  `encode/1` takes an **Elixir binary** (_String, Number, etc._)
+  and returns a Base58 encoded String.
+  `encode/1` receives a Base58 encoded String and returns a binary.
   """
 
   @doc """
   ## Examples
 
-    iex> Base58Encode.encode("hello")
+    iex> Base58.encode("hello")
     "Cn8eVZg"
 
-    iex> Base58Encode.encode(42)
+    iex> Base58.encode(42)
     :error
   """
 

@@ -1,10 +1,10 @@
-defmodule Base58Encode.MixProject do
+defmodule Base58.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :b58,
-      name: "b58",
+      app: :exbase58,
+      name: "exbase58",
       description: description(),
       package: package(),
       version: "0.1.1",
@@ -16,7 +16,7 @@ defmodule Base58Encode.MixProject do
         coveralls: :test,
         "coveralls.json": :test
       ],
-      source_url: "https://github.com/dwyl/base58encode"
+      source_url: "https://github.com/dwyl/exbase58"
     ]
   end
 

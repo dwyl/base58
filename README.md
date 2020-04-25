@@ -1,9 +1,22 @@
-# elixir-base58-encode
-[![Hex pm](http://img.shields.io/hexpm/v/b58.svg?style=flat)](https://hex.pm/packages/b58)
-[![Build Status](https://travis-ci.org/dwyl/base58encode.svg?branch=master)](https://travis-ci.org/dwyl/base58encode)
-[![codecov](https://codecov.io/gh/dwyl/base58encode/branch/master/graph/badge.svg)](https://codecov.io/gh/dwyl/base58encode)
+<div align="center">
 
-This module provides the `Base58Encode.encode/1` function which takes an **Elixir binary** and returns its base58 String representation.
+# Elixir Base58
+
+[![Build Status](https://img.shields.io/travis/dwyl/exbase58/master.svg?style=flat-square)](https://travis-ci.org/dwyl/exbase58)
+[![codecov.io](https://img.shields.io/codecov/c/github/dwyl/exbase58/master.svg?style=flat-square)](http://codecov.io/github/dwyl/exbase58?branch=master)
+[![Hex.pm](https://img.shields.io/hexpm/v/exbase58?color=brightgreen&style=flat-square)](https://hex.pm/packages/exbase58)
+[![Libraries.io dependency status](https://img.shields.io/librariesio/release/hex/exbase58?logoColor=brightgreen&style=flat-square)](https://libraries.io/hex/exbase58)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/dwyl/exbase58/issues)
+<!--
+[![HitCount](http://hits.dwyl.io/dwyl/exbase58.svg)](http://hits.dwyl.io/dwyl/exbase58)
+<!-- uncomment when service is working ...
+[![Inline docs](http://inch-ci.org/github/dwyl/exbase58.svg?branch=master&style=flat-square)](http://inch-ci.org/github/dwyl/exbase58)
+-->
+
+`exbase58` provides two functions: `encode/1` and `decode/1`. <br />
+`encode/1` takes an **Elixir binary** (_String, Number, etc._)
+and returns a Base58 encoded String. <br />
+`encode/1` receives a Base58 encoded String and returns a binary.
 
 See the section [What is an Elixir binary?](#what-is-an-elixir-binary) for more information about the binary type in Elixir.
 
@@ -13,7 +26,7 @@ See the section [What is an Elixir binary?](#what-is-an-elixir-binary) for more 
 
   ```
   defp deps do
-    [b58: "~> 0.1.0"]
+    [exbase58: "~> 0.1.0"]
   end
   ```
 
