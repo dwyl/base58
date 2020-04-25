@@ -1,4 +1,4 @@
-defmodule Base58 do
+defmodule ExBase58 do
   @moduledoc """
   `exbase58` provides two functions: `encode/1` and `decode/1`.
   `encode/1` takes an **Elixir binary** (_String, Number, etc._)
@@ -9,10 +9,10 @@ defmodule Base58 do
   @doc """
   ## Examples
 
-    iex> Base58.encode("hello")
+    iex> ExBase58.encode("hello")
     "Cn8eVZg"
 
-    iex> Base58.encode(42)
+    iex> ExBase58.encode(42)
     "m8Uq"
   """
 

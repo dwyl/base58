@@ -1,9 +1,9 @@
-defmodule Base58Test do
+defmodule ExBase58Test do
   use ExUnit.Case
   use ExUnitProperties
 
-  doctest Base58
-  import Base58
+  doctest ExBase58
+  import ExBase58
 
   describe "Testing encode function" do
     test "returns empty string when encoding an empty string" do

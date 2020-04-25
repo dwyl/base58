@@ -1,4 +1,4 @@
-defmodule Base58.MixProject do
+defmodule ExBase58.MixProject do
   use Mix.Project
 
   def project do
@@ -31,21 +31,22 @@ defmodule Base58.MixProject do
   defp deps do
     [ {:excoveralls, "~> 0.10", only: :test},
       {:basefiftyeight, "~> 0.1.0", only: :test},
+      {:base58, "~> 0.1.0", only: :test},
       {:stream_data, "~> 0.1", only: :test},
       {:ex_doc, "~> 0.19.3", only: :dev}
     ]
   end
 
   defp description() do
-    "Encode an Elixir binary to its base58 representation"
+    "Encode an Elixir binary to base58 and decode base58 strings."
   end
 
   defp package() do
     [
-      name: "b58",
+      name: "exbase58",
       licenses: ["GNU GPL v2.0"],
       maintainers: ["dwyl"],
-      links: %{"GitHub" => "https://github.com/dwyl/base58encode"}
+      links: %{"GitHub" => "https://github.com/dwyl/exbase58"}
     ]
   end
 end
