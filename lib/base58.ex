@@ -1,6 +1,6 @@
 defmodule Base58 do
   @moduledoc """
-  `base58` provides two functions: `encode/1` and `decode/1`.
+  `Base58` provides two functions: `encode/1` and `decode/1`.
   `encode/1` takes an **Elixir binary** (_String, Number, etc._)
   and returns a Base58 encoded String.
   `decode/1` receives a Base58 encoded String and returns a binary.

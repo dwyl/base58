@@ -13,10 +13,11 @@
 [![Inline docs](http://inch-ci.org/github/dwyl/base58.svg?branch=master&style=flat-square)](http://inch-ci.org/github/dwyl/base58)
 -->
 
-`b58` provides functions `encode/1` and `decode/1`  <br />
+`Base58` provides two functions to
+work with Base58 encoded strings: `Base58.encode/1` and `Base58.decode/1`  <br />
 `encode/1` takes an **Elixir binary** (_String, Number, etc._)
 and returns a Base58 encoded String. <br />
-`encode/1` receives a Base58 encoded String and returns a binary.
+`decode/1` receives a Base58 encoded String and returns a binary.
 
 See the section [What is an Elixir binary?](#what-is-an-elixir-binary) for more information about the binary type in Elixir.
 
@@ -26,7 +27,7 @@ See the section [What is an Elixir binary?](#what-is-an-elixir-binary) for more 
 
   ```
   defp deps do
-    [b58: "~> 1.0.0"]
+    [Base58: "~> 1.0.0"]
   end
   ```
 
@@ -35,14 +36,14 @@ and run `mix deps.get`
 2. Invoke the `encode` function with a binary as parameter:
 
  ```
- B58.encode("foo")
+ Base58.encode("foo")
  "bQbp"
  ```
 
 3. Invoke the `decode` function with a `base58` encoded string:
 
 ```
-B58.encode("hello") |> B58.decode()
+Base58.encode("hello") |> Base58.decode()
 "hello"
 ```
 
