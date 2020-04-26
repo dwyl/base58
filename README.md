@@ -27,7 +27,7 @@ See the section [What is an Elixir binary?](#what-is-an-elixir-binary) for more 
 
 ## How to use the module?
 
-### 1. Add the package to you dependencies
+### 1. Add the package to you dependencies
 
 Open your `mix.exs` file and add the following line to your `deps`:
 
@@ -41,7 +41,7 @@ end
 
 and run `mix deps.get`
 
-### 2. Invoke the `encode/1` function with a binary as parameter:
+### 2. Invoke the `encode/1` function with a binary as parameter:
 
 ```elixir
 Base58.encode("foo")
@@ -63,7 +63,7 @@ for a simple example of how to use the module. <br />
 You can also run this example with `mix run example/example.exs`
 
 
-### Note: `Integer` Values are Converted to `String`
+### Note: `Integer` Values are Converted to `String`
 
 When encoding an `Integer`
 the value is converted to a `String` before encoding
