@@ -7,7 +7,6 @@
 [![Hex.pm](https://img.shields.io/hexpm/v/base58?color=brightgreen&style=flat-square)](https://hex.pm/packages/base58)
 [![Libraries.io dependency status](https://img.shields.io/librariesio/release/hex/base58?logoColor=brightgreen&style=flat-square)](https://libraries.io/hex/base58)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/dwyl/base58/issues)
-<!--
 [![HitCount](http://hits.dwyl.io/dwyl/base58.svg)](http://hits.dwyl.io/dwyl/base58)
 <!-- uncomment when service is working ...
 [![Inline docs](http://inch-ci.org/github/dwyl/base58.svg?branch=master&style=flat-square)](http://inch-ci.org/github/dwyl/base58)
@@ -30,22 +29,26 @@ See the section [What is an Elixir binary?](#what-is-an-elixir-binary) for more 
 
 ### 1. Add the package to you dependencies
 
+Open your `mix.exs` file and add the following line to your `deps`:
+
 ```elixir
 defp deps do
-  [:b58, "~> 1.0.0"]
+  [
+    {:b58, "~> 1.0"},
+  ]
 end
 ```
 
 and run `mix deps.get`
 
-### 2. Invoke the `encode` function with a binary as parameter:
+### 2. Invoke the `encode/1` function with a binary as parameter:
 
 ```elixir
 Base58.encode("foo")
 "bQbp"
 ```
 
-### 3. Invoke the `decode` function with a `base58` encoded string:
+### 3. Invoke the `decode/1` function with a `base58` encoded string:
 
 ```elixir
 Base58.encode("hello") |> Base58.decode()
@@ -60,27 +63,35 @@ for a simple example of how to use the module. <br />
 You can also run this example with `mix run example/example.exs`
 
 
-### Note: `Numeric` Values are Converted to `String`
+### Note: `Integer` Values are Converted to `String`
 
 When encoding an `Integer`
 the value is converted to a `String` before encoding
 so when it is decoded it will be a string e.g:
+
 ```elixir
 Base58.encode(42) |> Base58.decode()
 "42"
 ```
-This isn't ideal if you expected an `Integer`
+
+This isn't ideal if you _expected_ an `Integer`
 but there is no way to encode the **`type`** of the data.
 So if you _know_ that you need it to be an `int`,
-convert it back to a numeric value:
+convert it back to a numeric value with `Base58.decode_to_int/1`:
+
 ```elixir
-{myInt, _} = Base58.encode(42) |> Base58.decode() |> Integer.parse()
+iex(1)> Base58.encode(42) |> Base58.decode_to_int()
 42
 ```
 
 
 
 <br /> <br />
+
+## Why?
+
+
+
 
 ## What is Base58?
 
