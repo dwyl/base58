@@ -13,7 +13,7 @@ defmodule Base58 do
     "Cn8eVZg"
 
     iex> Base58.encode(42)
-    "m8Uq"
+    "4yP"
   """
   def encode(""), do: ""
   def encode(binary) when is_binary(binary) do
@@ -30,8 +30,21 @@ defmodule Base58 do
   end
 
   # If the parameter is not a binary convert it to binary before encode.
-  def encode(anything) do
-    :erlang.term_to_binary(anything)
+  def encode(int) when is_integer(int) do
+    int
+    |> Integer.to_string()
+    |> encode()
+  end
+
+  def encode(val) when is_float(val) do
+    val
+    |> Float.to_string()
+    |> encode()
+  end
+
+  def encode(atom) when is_atom(atom) do
+    atom
+    |> Atom.to_string()
     |> encode()
   end
 
@@ -85,5 +98,17 @@ defmodule Base58 do
   defp recurse([], acc), do: acc |> :binary.encode_unsigned()
   defp recurse([head | tail], acc) do
     recurse(tail, (acc * 58) + Enum.find_index(@alnum, &(&1 == head)))
+  end
+
+  @doc """
+  `decode_to_int/1` decodes the given Base58 string back to an Integer.
+  ## Examples
+
+    iex> Base58.encode(42) |> Base58.decode_to_int()
+    42
+  """
+  def decode_to_int(encoded) do
+    decode(encoded)
+    |> String.to_integer()
   end
 end

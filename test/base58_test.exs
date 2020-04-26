@@ -16,10 +16,14 @@ defmodule Base58Test do
 
     test "converts any value to binary and then Base58 encodes it" do
       # Integer
-      assert "m8UW" == encode(23)
-      assert "8NmHr9odQSJL4n" == encode(3.14)
+      assert "4pa" == encode(23)
+      assert "4pa" == encode("23")
+      # Float
+      assert "2JstGb" == encode(3.14)
+      assert "2JstGb" == encode("3.14")
       # Atom
-      assert "2g14LRptojh8i" == encode(:hello)
+      assert "Cn8eVZg" == encode(:hello)
+      assert "Cn8eVZg" == encode("hello")
     end
 
     test "returns z when binary is represented by 57" do
@@ -34,7 +38,7 @@ defmodule Base58Test do
       assert "Z" == encode(" ")
     end
 
-    test "encode <<0>> retuens 1" do
+    test "encode <<0>> returns 1" do
       assert "1" == encode(<<0>>)
     end
 
@@ -45,6 +49,22 @@ defmodule Base58Test do
     test "decode(encode(str) == str)" do
       assert B58.encode58("123") == encode("123")
       assert decode(encode("123")) == "123"
+    end
+
+    test "decode :atom" do
+      assert encode(:hello) |> decode() == "hello"
+    end
+
+    test "decode_to_int(encode(int) == int)" do
+      int = 42
+      decoded = Base58.encode(int) |> Base58.decode_to_int()
+      assert decoded == int
+    end
+
+    property "Check a batch of int values can be decoded" do
+      check all(int <- integer()) do
+        assert decode_to_int(encode(int)) == int
+      end
     end
 
     property "Compare result with Base58 package" do
