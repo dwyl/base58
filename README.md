@@ -26,9 +26,9 @@ and returns a Base58 encoded String. <br />
 
 See the section [What is an Elixir binary?](#what-is-an-elixir-binary) for more information about the binary type in Elixir.
 
-## How to use the module
+## How to use the module?
 
-1. Add the package to you dependencies
+### 1. Add the package to you dependencies
 
 ```elixir
 defp deps do
@@ -38,24 +38,47 @@ end
 
 and run `mix deps.get`
 
-2. Invoke the `encode` function with a binary as parameter:
+### 2. Invoke the `encode` function with a binary as parameter:
 
 ```elixir
 Base58.encode("foo")
 "bQbp"
 ```
 
-3. Invoke the `decode` function with a `base58` encoded string:
+### 3. Invoke the `decode` function with a `base58` encoded string:
 
 ```elixir
 Base58.encode("hello") |> Base58.decode()
 "hello"
 ```
 
+<br />
+
 
 See `example/example.exs` file
 for a simple example of how to use the module. <br />
 You can also run this example with `mix run example/example.exs`
+
+
+### Note: `Numeric` Values are Converted to `String`
+
+When encoding an `Integer`
+the value is converted to a `String` before encoding
+so when it is decoded it will be a string e.g:
+```elixir
+Base58.encode(42) |> Base58.decode()
+"42"
+```
+This isn't ideal if you expected an `Integer`
+but there is no way to encode the **`type`** of the data.
+So if you _know_ that you need it to be an `int`,
+convert it back to a numeric value:
+```elixir
+{myInt, _} = Base58.encode(42) |> Base58.decode() |> Integer.parse()
+42
+```
+
+
 
 <br /> <br />
 
