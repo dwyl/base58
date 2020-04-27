@@ -94,7 +94,7 @@ defmodule Base58 do
 
   def decode(""), do: "" # return empty string unmodified
   def decode("\0"), do: "" # treat null values as empty
-  def decode(encoded), do: recurse(encoded |> to_char_list, 0)
+  def decode(encoded), do: recurse(encoded |> to_charlist, 0)
   defp recurse([], acc), do: acc |> :binary.encode_unsigned()
   defp recurse([head | tail], acc) do
     recurse(tail, (acc * 58) + Enum.find_index(@alnum, &(&1 == head)))
