@@ -6,6 +6,8 @@ defmodule Base58 do
   `decode/1` receives a Base58 encoded String and returns a binary.
   """
 
+  @alnum ~c(123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz)
+
   @doc """
   ## Examples
 
@@ -60,17 +62,10 @@ defmodule Base58 do
     end
   end
 
-  defp alphanum do
-    [ '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
-    'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W',
-    'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'm',
-    'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' ]
-  end
-
   # match codepoints to the alphabet of base58
   defp codes_to_string(codes) do
     codes
-    |> Enum.map(&Enum.at(alphanum(), &1))
+    |> Enum.map(&<<Enum.at(@alnum, &1)>>)
     |> Enum.join()
   end
 
@@ -90,7 +85,6 @@ defmodule Base58 do
     iex> Base58.encode("hello") |> Base58.decode()
     "hello"
   """
-  @alnum ~c(123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz)
 
   def decode(""), do: "" # return empty string unmodified
   def decode("\0"), do: "" # treat null values as empty
