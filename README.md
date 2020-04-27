@@ -1,45 +1,102 @@
-# elixir-base58-encode
-[![Hex pm](http://img.shields.io/hexpm/v/b58.svg?style=flat)](https://hex.pm/packages/b58)
-[![Build Status](https://travis-ci.org/dwyl/base58encode.svg?branch=master)](https://travis-ci.org/dwyl/base58encode)
-[![codecov](https://codecov.io/gh/dwyl/base58encode/branch/master/graph/badge.svg)](https://codecov.io/gh/dwyl/base58encode)
+<div align="center">
 
-This module provides the `Base58Encode.encode/1` function which takes an **Elixir binary** and returns its base58 String representation.
+# `b58` - _Minimalist_ Elixir Base58 Encoding/Decoding Library
+
+[![Build Status](https://img.shields.io/travis/dwyl/base58/master.svg?style=flat-square)](https://travis-ci.org/dwyl/base58)
+[![codecov.io](https://img.shields.io/codecov/c/github/dwyl/base58/master.svg?style=flat-square)](http://codecov.io/github/dwyl/base58?branch=master)
+[![Hex.pm](https://img.shields.io/hexpm/v/base58?color=brightgreen&style=flat-square)](https://hex.pm/packages/base58)
+[![Libraries.io dependency status](https://img.shields.io/librariesio/release/hex/base58?logoColor=brightgreen&style=flat-square)](https://libraries.io/hex/base58)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/dwyl/base58/issues)
+[![HitCount](http://hits.dwyl.io/dwyl/base58.svg)](http://hits.dwyl.io/dwyl/base58)
+<!-- uncomment when service is working ...
+[![Inline docs](http://inch-ci.org/github/dwyl/base58.svg?branch=master&style=flat-square)](http://inch-ci.org/github/dwyl/base58)
+-->
+
+![base58-encode-hero-image](https://user-images.githubusercontent.com/194400/80292242-1d2de500-874d-11ea-8514-91a8fdfabfde.jpg)
+
+
+</div>
+
+`Base58` provides two functions to
+work with Base58 encoded strings: `Base58.encode/1` and `Base58.decode/1`  <br />
+`encode/1` takes an **Elixir binary** (_String, Number, etc._)
+and returns a Base58 encoded String. <br />
+`decode/1` receives a Base58 encoded String and returns a binary.
 
 See the section [What is an Elixir binary?](#what-is-an-elixir-binary) for more information about the binary type in Elixir.
 
-## How to use the module
+## How to use the module?
 
-1. Add the package to you dependencies
+### 1. Add the package to you dependencies
 
-  ```
-  defp deps do
-    [b58: "~> 0.1.0"]
-  end
-  ```
+Open your `mix.exs` file and add the following line to your `deps`:
 
-  and run `mix deps.get`
+```elixir
+defp deps do
+  [
+    {:b58, "~> 1.0"},
+  ]
+end
+```
 
-2. Call the `encode` function with a binary as parameter:
+and run `mix deps.get`
 
- ```
- Base58Encode.encode("foo")
- "bQbp"
- ```
+### 2. Invoke the `encode/1` function with a binary as parameter:
 
- if the parameter is not an Elixir binary the function will return `:error`. In
- this example 42 is an Integer and not a binary (`is_binary(42)` will return `false`)
+```elixir
+Base58.encode("foo")
+"bQbp"
+```
 
- ```
- Base58Encode.encode(42)
- :error
- ```
+### 3. Invoke the `decode/1` function with a `base58` encoded string:
 
- See `example/example.exs` file for a simple example on how to use the module.
- You can also run this example with `mix run example/example.exs`
+```elixir
+Base58.encode("hello") |> Base58.decode()
+"hello"
+```
 
-## What is base58?
+<br />
+
+
+See `example/example.exs` file
+for a simple example of how to use the module. <br />
+You can also run this example with `mix run example/example.exs`
+
+
+### Note: `Integer` Values are Converted to `String`
+
+When encoding an `Integer`
+the value is converted to a `String` before encoding
+so when it is decoded it will be a string e.g:
+
+```elixir
+Base58.encode(42) |> Base58.decode()
+"42"
+```
+
+This isn't ideal if you _expected_ an `Integer`
+but there is no way to encode the **`type`** of the data.
+So if you _know_ that you need it to be an `int`,
+convert it back to a numeric value with `Base58.decode_to_int/1`:
+
+```elixir
+iex(1)> Base58.encode(42) |> Base58.decode_to_int()
+42
+```
+
+
+
+<br /> <br />
+
+## Why?
+
+
+
+
+## What is Base58?
 
 A *base* is a set of characters used for representing numbers.
+https://en.wikipedia.org/wiki/Base58
 
 For example
 - The base 2 (binary system) represents numbers with the digits ` 0 1`
