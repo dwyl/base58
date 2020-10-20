@@ -203,7 +203,7 @@ base 58 uses comes from Bitcoin and blockchain. It is also used with [IPFS](http
 to create [Content Identifier](https://github.com/dwyl/cid/)
 
 Wikipedia page for base58:
-https://en.wikipedia.org/wiki/Base56
+https://en.wikipedia.org/wiki/Base58
 
 ## What is an Elixir binary?
 
