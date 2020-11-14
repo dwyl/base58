@@ -3,7 +3,7 @@ defmodule Base58.MixProject do
 
   def project do
     [
-      app: :B58,
+      app: :b58,
       name: "b58",
       description: description(),
       package: package(),
