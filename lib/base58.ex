@@ -17,66 +17,14 @@ defmodule Base58 do
     iex> Base58.encode(42)
     "4yP"
   """
+  def encode(e) when is_integer(e) or is_float(e) or is_atom(e), do: encode("#{e}")
+  # see https://github.com/dwyl/base58/issues/5#issuecomment-459088540
+  def encode(<<0, binary::binary>>), do: "1" <> encode(binary)
   def encode(""), do: ""
-  def encode(binary) when is_binary(binary) do
-    # see https://github.com/dwyl/base58/pull/3#discussion_r252291127
-    decimal = :binary.decode_unsigned(binary)
-
-    if decimal == 0 do
-      # see https://github.com/dwyl/base58/issues/5#issuecomment-459088540
-      leading_zeros(binary, "")
-    else
-      codes = get_codes(decimal, [])
-      leading_zeros(binary, "") <> codes_to_string(codes)
-    end
-  end
-
-  # If the parameter is not a binary convert it to binary before encode.
-  def encode(int) when is_integer(int) do
-    int
-    |> Integer.to_string()
-    |> encode()
-  end
-
-  def encode(val) when is_float(val) do
-    val
-    |> Float.to_string()
-    |> encode()
-  end
-
-  def encode(atom) when is_atom(atom) do
-    atom
-    |> Atom.to_string()
-    |> encode()
-  end
-
-  # return a list of codes (codepoint of base58)
-  defp get_codes(int, codes) do
-    rest = div(int, 58)
-    code = rem(int, 58)
-
-    if rest == 0 do
-      [code | codes]
-    else
-      get_codes(rest, [code | codes])
-    end
-  end
-
-  # match codepoints to the alphabet of base58
-  defp codes_to_string(codes) do
-    codes
-    |> Enum.map(&<<Enum.at(@alnum, &1)>>)
-    |> Enum.join()
-  end
-
-  # convert leading zeros to "1"
-  defp leading_zeros(<<0, rest::binary>>, acc) do
-    leading_zeros(rest, acc <> "1")
-  end
-
-  defp leading_zeros(_bin, acc) do
-    acc
-  end
+  # see https://github.com/dwyl/base58/pull/3#discussion_r252291127
+  def encode(binary), do: encode(:binary.decode_unsigned(binary), "")
+  def encode(0, acc), do: acc
+  def encode(n, acc), do: encode(div(n, 58), <<Enum.at(@alnum, rem(n, 58))>> <> acc)
 
   @doc """
   `decode/1` decodes the given Base58 string back to binary.
@@ -88,11 +36,10 @@ defmodule Base58 do
 
   def decode(""), do: "" # return empty string unmodified
   def decode("\0"), do: "" # treat null values as empty
-  def decode(encoded), do: recurse(encoded |> to_charlist, 0)
-  defp recurse([], acc), do: acc |> :binary.encode_unsigned()
-  defp recurse([head | tail], acc) do
-    recurse(tail, (acc * 58) + Enum.find_index(@alnum, &(&1 == head)))
-  end
+  def decode(binary), do: decode(binary, 0)
+  def decode("", acc), do: :binary.encode_unsigned(acc)
+  def decode(<<head, tail::binary>>, acc),
+    do: decode(tail, acc * 58 + Enum.find_index(@alnum, &(&1 == head)))
 
   @doc """
   `decode_to_int/1` decodes the given Base58 string back to an Integer.
@@ -101,8 +48,5 @@ defmodule Base58 do
     iex> Base58.encode(42) |> Base58.decode_to_int()
     42
   """
-  def decode_to_int(encoded) do
-    decode(encoded)
-    |> String.to_integer()
-  end
+  def decode_to_int(encoded), do: encoded |> decode() |> String.to_integer()
 end
