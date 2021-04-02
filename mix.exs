@@ -8,7 +8,7 @@ defmodule Base58.MixProject do
       description: description(),
       package: package(),
       version: "1.0.1",
-      elixir: "~> 1.7",
+      elixir: "~> 1.11",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       test_coverage: [tool: ExCoveralls],
@@ -32,8 +32,8 @@ defmodule Base58.MixProject do
     [
       {:excoveralls, "~> 0.12.3", only: :test},
       {:basefiftyeight, "~> 0.1.0", only: :test},
-      {:stream_data, "~> 0.4.3", only: :test},
-      {:ex_doc, "~> 0.21.3", only: :dev}
+      {:stream_data, "~> 0.5", only: :test},
+      {:ex_doc, "~> 0.23", only: :dev}
     ]
   end
 
