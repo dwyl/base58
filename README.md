@@ -1,11 +1,11 @@
 <div align="center">
 
-# `b58` - _Minimalist_ Elixir Base58 Encoding/Decoding Library
+# `b58` - _Minimalist_ Elixir `Base58` Encoding/Decoding Library
 
 [![Build Status](https://img.shields.io/travis/dwyl/base58/master.svg?style=flat-square)](https://travis-ci.org/dwyl/base58)
 [![codecov.io](https://img.shields.io/codecov/c/github/dwyl/base58/master.svg?style=flat-square)](http://codecov.io/github/dwyl/base58?branch=master)
 [![Hex.pm](https://img.shields.io/hexpm/v/base58?color=brightgreen&style=flat-square)](https://hex.pm/packages/base58)
-[![Libraries.io dependency status](https://img.shields.io/librariesio/release/hex/base58?logoColor=brightgreen&style=flat-square)](https://libraries.io/hex/base58)
+[![Libraries.io dependency status](https://img.shields.io/librariesio/release/hex/b58?logoColor=brightgreen&style=flat-square)](https://libraries.io/hex/b58)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/dwyl/base58/issues)
 [![HitCount](http://hits.dwyl.io/dwyl/base58.svg)](http://hits.dwyl.io/dwyl/base58)
 <!-- uncomment when service is working ...
