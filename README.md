@@ -34,7 +34,7 @@ Open your `mix.exs` file and add the following line to your `deps`:
 ```elixir
 defp deps do
   [
-    {:b58, "~> 1.0"},
+    {:b58, "~> 1.0.2"},
   ]
 end
 ```
