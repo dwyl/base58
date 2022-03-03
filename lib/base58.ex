@@ -36,7 +36,14 @@ defmodule Base58 do
 
   def decode(""), do: "" # return empty string unmodified
   def decode("\0"), do: "" # treat null values as empty
-  def decode(binary), do: decode(binary, 0)
+  def decode(binary) do
+    # avoid dropping leading zeros -- see https://github.com/dwyl/base58/issues/27
+    origlen = String.length(binary)
+    binary = String.trim_leading(binary, "1")
+    newlen = String.length(binary)
+    String.duplicate(<<0>>, origlen - newlen) <> decode(binary, 0)
+  end
+  def decode("", 0), do: ""
   def decode("", acc), do: :binary.encode_unsigned(acc)
   def decode(<<head, tail::binary>>, acc),
     do: decode(tail, acc * 58 + Enum.find_index(@alnum, &(&1 == head)))
