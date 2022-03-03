@@ -45,7 +45,7 @@ defmodule Base58 do
   def decode(<<head, tail::binary>>, acc),
     do: decode(tail, acc * 58 + Enum.find_index(@alnum, &(&1 == head)))
 
-  def handle_leading_zeroes(binary) do
+  defp handle_leading_zeroes(binary) do
     # avoid dropping leading zeros -- see https://github.com/dwyl/base58/issues/27
     origlen = String.length(binary)
     binary = String.trim_leading(binary, <<List.first(@alnum)>>)
