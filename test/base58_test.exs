@@ -61,6 +61,14 @@ defmodule Base58Test do
       assert decoded == int
     end
 
+    test "decode 11111 returns <<0, 0, 0, 0, 0>>" do
+      assert <<0, 0, 0, 0, 0>> == decode("11111")
+    end
+
+    test "decode 11112 returns <<0, 0, 0, 0, 1>>" do
+      assert <<0, 0, 0, 0, 1>> == decode("11112")
+    end
+
     property "Check a batch of int values can be decoded" do
       check all(int <- integer()) do
         assert decode_to_int(encode(int)) == int
