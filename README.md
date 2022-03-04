@@ -7,7 +7,7 @@
 [![Hex.pm](https://img.shields.io/hexpm/v/b58?color=brightgreen&style=flat-square)](https://hex.pm/packages/b58)
 [![Libraries.io dependency status](https://img.shields.io/librariesio/release/hex/b58?logoColor=brightgreen&style=flat-square)](https://libraries.io/hex/b58)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/dwyl/base58/issues)
-[![HitCount](http://hits.dwyl.io/dwyl/base58.svg)](http://hits.dwyl.io/dwyl/base58)
+[![HitCount](http://hits.dwyl.com/dwyl/base58.svg)](http://hits.dwyl.com/dwyl/base58)
 <!-- uncomment when service is working ...
 [![Inline docs](http://inch-ci.org/github/dwyl/base58.svg?branch=master&style=flat-square)](http://inch-ci.org/github/dwyl/base58)
 -->
