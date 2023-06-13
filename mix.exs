@@ -8,7 +8,7 @@ defmodule Base58.MixProject do
       description: description(),
       package: package(),
       version: "1.0.3",
-      elixir: "~> 1.11",
+      elixir: "~> 1.14.3",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       test_coverage: [tool: ExCoveralls],
