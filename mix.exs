@@ -30,12 +30,12 @@ defmodule Base58.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:excoveralls, "~> 0.14.2", only: :test},
-      {:ex_doc, "~> 0.25.2", only: :dev},
+      {:excoveralls, "~> 0.16.1", only: :test},
+      {:ex_doc, "~> 0.29.4", only: :dev},
       {:stream_data, "~> 0.5", only: :test},
 
       # use similar library for testing reference:
-      {:basefiftyeight, "~> 0.1.0", only: :test},
+      {:basefiftyeight, "~> 0.1.0", only: :test}
     ]
   end
 
