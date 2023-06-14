@@ -2,7 +2,7 @@
 
 # `b58` - _Minimalist_ Elixir `Base58` Encoding/Decoding Library
 
-[![Build Status](https://img.shields.io/travis/dwyl/base58/master.svg?style=flat-square)](https://travis-ci.org/dwyl/base58)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/dwyl/base58/elixir.yml?label=build&style=flat-square&branch=main)
 [![codecov.io](https://img.shields.io/codecov/c/github/dwyl/base58/master.svg?style=flat-square)](https://codecov.io/github/dwyl/base58?branch=master)
 [![Hex.pm](https://img.shields.io/hexpm/v/b58?color=brightgreen&style=flat-square)](https://hex.pm/packages/b58)
 [![Libraries.io dependency status](https://img.shields.io/librariesio/release/hex/b58?logoColor=brightgreen&style=flat-square)](https://libraries.io/hex/b58)

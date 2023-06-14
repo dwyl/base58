@@ -8,3 +8,4 @@ erl_crash.dump
 *.beam
 /config/*.secret.exs
 *.swp
+.elixir_ls
