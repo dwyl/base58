@@ -32,7 +32,7 @@ defmodule Base58.MixProject do
     [
       {:excoveralls, "~> 0.18.0", only: :test},
       {:ex_doc, "~> 0.31.0", only: :dev},
-      {:stream_data, "~> 0.5", only: :test},
+      {:stream_data, "~> 1.0", only: :test},
 
       # use similar library for testing reference:
       {:basefiftyeight, "~> 0.1.0", only: :test}
