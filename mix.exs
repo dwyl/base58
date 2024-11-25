@@ -31,7 +31,7 @@ defmodule Base58.MixProject do
   defp deps do
     [
       {:excoveralls, "~> 0.18.0", only: :test},
-      {:ex_doc, "~> 0.34.0", only: :dev},
+      {:ex_doc, "~> 0.35.1", only: :dev},
       {:stream_data, "~> 1.0", only: :test},
 
       # use similar library for testing reference:
